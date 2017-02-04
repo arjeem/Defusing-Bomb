@@ -1,6 +1,3 @@
-// DefusingBomb.cpp : Defines the entry point for the console application.
-//
-
 #include "stdafx.h"
 #include <stdlib.h>
 #include <iostream>
@@ -18,7 +15,6 @@ using namespace std;
 
 int main()
 {
-	bool defused = false;
 	int result, state = 0, wireColor = 6;
 
 	/*	Matrix to represent Finite Stae Machine
@@ -36,10 +32,11 @@ int main()
 					-1,-1,6,-1,-1 };
 
 	string color;
-	ifstream infile("SampleInput2.txt");
+	ifstream infile("SampleInput2.txt");	// edit file to read input from as needed
 
 	while (infile >> color)
 	{
+		/* get wire color from input */
 		if (!color.compare("white"))
 			wireColor = WHITE;
 		else if (!color.compare("red"))
@@ -56,8 +53,10 @@ int main()
 			return 0;
 		}
 
+		/* obtain state after wire cut */
 		result = fsm[state][wireColor];
 
+		/* interpret result of wire cut */
 		switch (result) {
 			case 6:
 				cout << "Bomb defused!" << endl;
@@ -77,5 +76,6 @@ int main()
 	}
 	cout << "BOOM!" << endl;
 	getchar();
+	return 0;
 
 }
